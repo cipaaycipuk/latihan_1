@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('kategori', ['furniture', 'decoration', 'lighting']);
             $table->decimal('price', 12, 2);
             $table->integer('stok');
+            $table->timestamps();
         });
     }
 
