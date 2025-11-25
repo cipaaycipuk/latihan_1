@@ -18,7 +18,7 @@
         <h1 class="text-3xl font-bold text-center text-black-800">Welcome Back</h1>
         <p class="text-center text-black-500 mb-8">Welcome back, please log in to your account here!</p>
 
-        <form action="{{ route('login.process') }}" method="POST" class="flex flex-col gap-4"></form>
+        <form action="{{ route('login.process') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4">
         @csrf
         <div>
             <label class="text-sm font-semibold text-gray-700">Email</label>
@@ -34,22 +34,7 @@
         
         <button type="submit"
         class="w-full bg-[#001BB7] text-white py-2 rounded-lg mt-2 hover:bg-gray-900 transition">Login</button>
+        </form>
     </div>
-    <!-- <div class="flex justify-center text-bold">
-        <h1>LOGIN</h1>
-        <br>
-        <h3>Welcome back, please login your account here!</h3>
-    </div>
-
-    <form action="{{ route('login.process') }}" method="POST">
-        @csrf
-        <label>Email</label>
-        <input type="email" name="email" required>
-
-        <label>Password</label>
-        <input type="password" name="password" required>
-
-        <button type="submit">Login</button>
-    </form> -->
 </body>
 </html>

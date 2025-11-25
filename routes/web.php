@@ -11,11 +11,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 
 Route::get('admin/dashboard', function(){
     return view('admin/dashboard');
-})->name('admin.dashboard')->middleware('admin.dashboard');
+})->name('admin.dashboard')->middleware('role:admin');
 
-Route::get('kasir.dashboard', function(){
+Route::get('kasir/dashboard', function(){
     return view('kasir/dashboard');
-})->name('kasir.dashboard')->middleware('kasir.dashboard');
+})->name('kasir.dashboard')->middleware('role:kasir');
 
 Route::post('logout', function(){
     Auth::logout();
