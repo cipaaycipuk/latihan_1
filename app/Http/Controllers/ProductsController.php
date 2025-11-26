@@ -10,10 +10,6 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function showProducts()
-    {
-        return view('kasir.products.index');
-    }
 
     public function index()
     {
@@ -26,7 +22,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('kasir.products.create');
+        $kategori = ['furniture', 'decoration', 'lighting'];
+        return view('kasir.products.create', compact('kategori'));
     }
 
     /**
@@ -35,12 +32,14 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         Products::create($request->only(['nama','kategori', 'price', 'stok']));
+        return redirect()->route('products.index');
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Products $product)
     {
+        $kategori = ['furniture', 'decoration', 'lighting'];
         return view('kasir.products.edit', compact('product'));
     }
 
@@ -50,7 +49,7 @@ class ProductsController extends Controller
     public function update(Request $request, Products $product)
     {
         $product->update($request->only(['nama', 'kategori', 'price', 'stok']));
-        return redirect()->route('kasir.products.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -59,6 +58,6 @@ class ProductsController extends Controller
     public function destroy(Products $product)
     {
         $product->delete();
-        return redirect()->route('kasir.products.index');
+        return redirect()->route('products.index');
     }
 }

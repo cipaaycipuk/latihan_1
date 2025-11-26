@@ -22,7 +22,7 @@
                     <a href="#">Dashboard</a>
                 </li>
                 <li>
-                    <a href="{{ route('kasir.products.index') }}">Products</a>
+                    <a href="{{ route('products.index') }}">Products</a>
                 </li>
                 <li>
                     <a href="#">Members</a>
