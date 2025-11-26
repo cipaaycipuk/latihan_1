@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -9,9 +10,15 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function showProducts()
+    {
+        return view('kasir.products.index');
+    }
+
     public function index()
     {
-        //
+        $data = Products::all();
+        return view('kasir.products.index', compact('data'));
     }
 
     /**
@@ -19,7 +26,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('kasir.products.create');
     }
 
     /**
@@ -27,38 +34,31 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Products::create($request->only(['nama','kategori', 'price', 'stok']));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Products $product)
     {
-        //
+        return view('kasir.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Products $product)
     {
-        //
+        $product->update($request->only(['nama', 'kategori', 'price', 'stok']));
+        return redirect()->route('kasir.products.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Products $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('kasir.products.index');
     }
 }

@@ -7,7 +7,7 @@
     <td>{{ $p->harga }}</td>
     <td>{{ $p->stok }}</td>
     <td>
-        <a href="{{ route('products.edit', $p->id) }}">Edit</a>
+        <a href="{{ route('kasir.products.edit', $p->id) }}">Edit</a>
         <form action="{{ route('products.destroy', $p->id) }}" method="POST">
             @csrf @method('DELETE')
             <button>Hapus</button>
